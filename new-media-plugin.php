@@ -27,6 +27,9 @@ class New_Media_Plugin {
      */
     public function __construct() {
 
+		// define consts.
+		define( 'NEW_NEDIA_PLUGIN_MENU_SLUG', 'media_manager_demo' );
+	
         // Load the plugin textdomain.
         load_plugin_textdomain( 'nmp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
@@ -49,8 +52,11 @@ class New_Media_Plugin {
      * @return null Return early if not on a page add/edit screen
      */
     public function assets() {
-		
-		
+
+		$settings = 'settings_page_'.NEW_NEDIA_PLUGIN_MENU_SLUG;
+		// Bail out early if we are not on a page add/edit screen.
+        if ( ( ! ( 'post' == get_current_screen()->base && 'page' == get_current_screen()->id ) ) && ( ! ( $settings == get_current_screen()->base && $settings == get_current_screen()->id ) ) )
+            return;
 
         // This function loads in the required media files for the media manager.
         wp_enqueue_media();
@@ -102,7 +108,7 @@ class New_Media_Plugin {
 		$page_title = 'Media Manager Demo';
 		$menu_title = $page_title;
 		$capability = 'manage_options';
-		$menu_slug = 'media_manager_demo';
+		$menu_slug = NEW_NEDIA_PLUGIN_MENU_SLUG;
 		$function = array( $this, 'create_setting_page' );
 		add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function );
 		
