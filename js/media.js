@@ -3,21 +3,21 @@
  *
  * @since 1.0.0
  *
- * @package TGM New Media Plugin
+ * @package New Media Plugin
  * @author  Thomas Griffin
  */
 jQuery(document).ready(function($){
     // Prepare the variable that holds our custom media manager.
-    var tgm_media_frame;
+    var media_frame;
     
     // Bind to our click event in order to open up the new media experience.
-    $(document.body).on('click.tgmOpenMediaManager', '.tgm-open-media', function(e){
+    $(document.body).on('click.OpenMediaManager', '.open-media', function(e){
         // Prevent the default action from occuring.
         e.preventDefault();
 
         // If the frame already exists, re-open it.
-        if ( tgm_media_frame ) {
-            tgm_media_frame.open();
+        if ( media_frame ) {
+            media_frame.open();
             return;
         }
 
@@ -28,14 +28,14 @@ jQuery(document).ready(function($){
          * wp-includes/js/media-views.js file to see some of the other default
          * options that can be utilized when creating your own custom media workflow.
          */
-        tgm_media_frame = wp.media.frames.tgm_media_frame = wp.media({
+        media_frame = wp.media.frames.media_frame = wp.media({
             /**
              * We can pass in a custom class name to our frame, so we do
              * it here to provide some extra context for styling our
              * media workflow. This helps us to prevent overwriting styles
              * for other media workflows.
              */
-            className: 'media-frame tgm-media-frame',
+            className: 'media-frame media-frame',
 
             /**
              * When creating a new media workflow, we are given two types
@@ -63,11 +63,11 @@ jQuery(document).ready(function($){
 
             /**
              * We can set a custom title for our media workflow. I've localized
-             * the script with the object 'tgm_nmp_media' that holds our
+             * the script with the object 'nmp_media' that holds our
              * localized stuff and such. Let's populate the title with our custom
              * text.
              */
-            title: tgm_nmp_media.title,
+            title: nmp_media.title,
 
             /**
              * We can force what type of media to show when the user views his/her
@@ -91,7 +91,7 @@ jQuery(document).ready(function($){
              * own events here, but the default event will work just fine.
              */
             button: {
-                text:  tgm_nmp_media.button
+                text:  nmp_media.button
             }
         });
 
@@ -125,15 +125,15 @@ jQuery(document).ready(function($){
          * insert the data into our custom input field. Specifically, our
          * media_attachment object will hold a key titled 'url' that we want to use.
          */
-        tgm_media_frame.on('select', function(){
+        media_frame.on('select', function(){
             // Grab our attachment selection and construct a JSON representation of the model.
-            var media_attachment = tgm_media_frame.state().get('selection').first().toJSON();
+            var media_attachment = media_frame.state().get('selection').first().toJSON();
 
             // Send the attachment URL to our custom input field via jQuery.
-            $('#tgm-new-media-image').val(media_attachment.url);
+            $('#new-media-image').val(media_attachment.url);
         });
 
         // Now that everything has been set, let's open up the frame.
-        tgm_media_frame.open();
+        media_frame.open();
     });
 });
