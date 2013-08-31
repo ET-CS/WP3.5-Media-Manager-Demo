@@ -6,4 +6,6 @@ This plugin provides an example for integrating the new media manager workflow i
 Two implementation Examples:
 
 * Meta box in pages / by Thomas Griffin
-* Plugin / by ET-CS
+
+by [ET][ET].
+[ET]: http://etcs.me
