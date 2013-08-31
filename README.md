@@ -7,5 +7,6 @@ Two implementation Examples:
 
 * Meta box in pages / by Thomas Griffin
 
-by [ET][ET].
+by [RaveMaker][RaveMaker] & [ET][ET].
+[RaveMaker]: http://ravemaker.net
 [ET]: http://etcs.me
